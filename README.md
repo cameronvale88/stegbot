@@ -1,4 +1,4 @@
-# stegbot
+## stegbot
 An expriment to use multiprocessing from the concurrent library to attack ctf stegonagraphy dictionary attacks
 
 Requirements: argparse, sys, concurrent, subprocess
