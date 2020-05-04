@@ -1,7 +1,7 @@
 # stegbot
-An expriment to use multiprocessing to attack ctf stegonagraphy dictionary attacks
+An expriment to use multiprocessing from the concurrent library to attack ctf stegonagraphy dictionary attacks
 
-# Requirements: argparse, sys, concurrent, subprocess
+Requirements: argparse, sys, concurrent, subprocess
 
 To use this program, open a terminal and run: python3 stegbot.py -i inputfile.jpg -o outputfile.jpg -w wordlist
 
