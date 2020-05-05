@@ -1,5 +1,5 @@
 ## stegbot
-An expriment to use multiprocessing from the concurrent library to attack ctf stegonagraphy dictionary attacks.
+An expriment to use multiprocessing from the concurrent library to attack ctf stegonagraphy challenges.
 
 The idea is to split a wordlist into smaller wordlists and create a separate process for dictionary attacking each portion of the list.
 
