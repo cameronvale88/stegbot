@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+num_processes=45 #change this number the number of processes desired. Then remove appropriate files from jobs list start
+                 #from the end to match the num_processes
 
 def parseArgs():
     import argparse
@@ -50,7 +52,7 @@ jobs=['xaa', 'xab', 'xac', 'xad', 'xae', 'xaf', 'xag', 'xah', 'xai', 'xaj', 'xak
 lines=subprocess.check_output(["wc", "-l", wordlist]) #will break wordlist into 45 smaller lists
 num_lines=lines.decode()
 num=int(num_lines[:-13])
-divisor=int((num/45)+1)
+divisor=int((num/num_processes)+1)
 out=subprocess.check_output(["split", "-l", str(divisor), wordlist])
     
 for file in jobs:
