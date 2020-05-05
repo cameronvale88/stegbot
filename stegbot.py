@@ -41,8 +41,7 @@ def steghide1(file):
                         timeFormat = 'hours'
                 print('[#] Finished : {0:.2f} {1}'.format(totalTime, timeFormat))
                 sys.exit()
-    executor.shutdown(wait=False)
-    exit()            
+    executor.shutdown(wait=False)        
 
 from concurrent import futures
 import subprocess
