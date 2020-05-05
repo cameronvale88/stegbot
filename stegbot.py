@@ -42,8 +42,6 @@ def steghide1(file):
     executor.shutdown(wait=False)
     exit()            
 
-
-# if __name__ == '__main__':
 from concurrent import futures
 import subprocess
 executor=futures.ProcessPoolExecutor(max_workers=47)
