@@ -71,4 +71,3 @@ for file in jobs:
 while True:
     if os.path.exists(output):
         os.system("pidof python3 | xargs kill 2>/dev/null")
-        # os.system("rm x*")
