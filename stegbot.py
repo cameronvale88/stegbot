@@ -48,7 +48,6 @@ from concurrent import futures
 import subprocess
 import os
 import signal
-import psutil
 import time
 pids=[]
 executor=futures.ProcessPoolExecutor(max_workers=47)
