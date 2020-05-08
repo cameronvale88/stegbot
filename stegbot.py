@@ -3,6 +3,7 @@
 num_processes=45 #change this number the number of processes desired. Then remove appropriate files from jobs list start
                  #from the end to match the num_processes
 
+
 def parseArgs():
     import argparse
     from sys import argv
@@ -27,10 +28,8 @@ def steghide1(file):
     with open(file) as passwords:
         lines=passwords.readlines()
         for password in lines:
-            cmd = 'steghide extract -sf {0} -xf {1} -p {2}'.format(image, output, password)
+            cmd = 'steghide extract -sf {} -xf {} -p {}'.format(image, output, password)
             if call(cmd.split(), stdout = DEVNULL, stderr = DEVNULL) == 0:
-                print('[#] password: {}\n[ctrl + c] to stop'.format(proc_id))
-                print("process {} is complete".format(num))
                 totalTime = time() - start
                 timeFormat = 'seconds'
                 if(totalTime >= 60):
@@ -39,15 +38,24 @@ def steghide1(file):
                     if(totalTime >= 3600):
                         totalTime = totalTime/60
                         timeFormat = 'hours'
+                print("process {} is complete".format(num))
+                print('[#] password: {}\n[ctrl + c] to stop'.format(password))
                 print('[#] Finished : {0:.2f} {1}'.format(totalTime, timeFormat))
-                sys.exit()
-    executor.shutdown(wait=False)        
+            
+
 
 from concurrent import futures
 import subprocess
+import os
+import signal
+import psutil
+import time
+pids=[]
 executor=futures.ProcessPoolExecutor(max_workers=47)
 image, output, wordlist = parseArgs()
-jobs=['xaa', 'xab', 'xac', 'xad', 'xae', 'xaf', 'xag', 'xah', 'xai', 'xaj', 'xak', 'xal', 'xam', 'xan', 'xao', 'xap', 'xaq', 'xar', 'xas', 'xat', 'xau', 'xav', 'xaw', 'xax', 'xay', 'xaz', 'xba', 'xbb', 'xbc', 'xbd', 'xbe', 'xbf', 'xbg', 'xbh', 'xbi', 'xbj', 'xbk', 'xbl', 'xbm', 'xbn', 'xbo', 'xbp', 'xbq', 'xbr', 'xbs', 'xbt', 'xbu',]
+#processes
+#      1       2       3     4      5      6      7     8       9     10      11    12      13     14    15     16     17      18    19     20      21     22     23     24     25     26    27      28     29    30      31     32     33     34    35      36   37      38      39     40    41      42     43     44     45
+jobs=['xaa', 'xab', 'xac', 'xad', 'xae', 'xaf', 'xag', 'xah', 'xai', 'xaj', 'xak', 'xal', 'xam', 'xan', 'xao', 'xap', 'xaq', 'xar', 'xas', 'xat', 'xau', 'xav', 'xaw', 'xax', 'xay', 'xaz', 'xba', 'xbb', 'xbc', 'xbd', 'xbe', 'xbf', 'xbg', 'xbh', 'xbi', 'xbj', 'xbk', 'xbl', 'xbm', 'xbn', 'xbo', 'xbp', 'xbq', 'xbr', 'xbs']
 lines=subprocess.check_output(["wc", "-l", wordlist]) #will break wordlist into 45 smaller lists
 num_lines=lines.decode()
 num=int(num_lines[:-13])
@@ -55,6 +63,12 @@ divisor=int((num/num_processes)+1)
 out=subprocess.check_output(["split", "-l", str(divisor), wordlist])
     
 for file in jobs:
+    pids.append(os.getpid())
     executor.submit(steghide1, file)
+    os.system("rm {}".format(file))
 
-   
+
+while True:
+    if os.path.exists(output):
+        os.system("pidof python3 | xargs kill 2>/dev/null")
+        # os.system("rm x*")
