@@ -3,7 +3,7 @@ An expriment to use multiprocessing from the concurrent library to attack ctf st
 
 The idea is to split a wordlist into smaller wordlists and create a separate process for dictionary attacking each portion of the list.
 
-Requirements: argparse, sys, concurrent, subprocess. Steghide must also be installed.
+Requirements: argparse, sys, concurrent, subprocess. Steghide must also be installed. Also, this will only run in a linux envrionment.
 
 To use this program, open a terminal and run: python3 stegbot.py -i inputfile.jpg -o outputfile.jpg -w wordlist
 
