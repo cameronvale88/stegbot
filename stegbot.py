@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 num_processes=45 #change this number the number of processes desired. Then remove appropriate files from jobs list start
-                 #from the end to match the num_processes
+                 #from the end to match the num_processes variable
 
 
 def parseArgs():
