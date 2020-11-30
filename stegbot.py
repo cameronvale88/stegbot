@@ -55,7 +55,8 @@ image, output, wordlist = parseArgs()
 #processes
 #      1       2       3     4      5      6      7     8       9     10      11    12      13     14    15     16     17      18    19     20      21     22     23     24     25     26    27      28     29    30      31     32     33     34    35      36   37      38      39     40    41      42     43     44     45
 jobs=['xaa', 'xab', 'xac', 'xad', 'xae', 'xaf', 'xag', 'xah', 'xai', 'xaj', 'xak', 'xal', 'xam', 'xan', 'xao', 'xap', 'xaq', 'xar', 'xas', 'xat', 'xau', 'xav', 'xaw', 'xax', 'xay', 'xaz', 'xba', 'xbb', 'xbc', 'xbd', 'xbe', 'xbf', 'xbg', 'xbh', 'xbi', 'xbj', 'xbk', 'xbl', 'xbm', 'xbn', 'xbo', 'xbp', 'xbq', 'xbr', 'xbs']
-lines=subprocess.check_output(["wc", "-l", wordlist]) #will break wordlist into 45 smaller lists
+#will break wordlist into 45 smaller lists
+lines=subprocess.check_output(["wc", "-l", wordlist]) 
 num_lines=lines.decode()
 num=int(num_lines[:-13])
 divisor=int((num/num_processes)+1)
